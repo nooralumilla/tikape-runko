@@ -4,8 +4,8 @@ package sushi.runko;
 
 public class RaakaAine {
     
-    private Integer id;
-    private String nimi;
+    Integer id;
+    String nimi;
     
     
     public RaakaAine(Integer id, String nimi) {
