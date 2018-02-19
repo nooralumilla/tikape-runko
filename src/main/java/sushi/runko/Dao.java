@@ -10,7 +10,7 @@ public interface Dao<T, K> {
     List<T> findAll() throws SQLException;
 
     void delete(K key) throws SQLException;
-    
-    T saveOrUpdate(T object) throws SQLDataException;
+
+    T saveOrUpdate(T object) throws SQLException;
 }
 //
