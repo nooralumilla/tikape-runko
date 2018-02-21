@@ -103,7 +103,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         return r;
     }
 
-    private RaakaAine update(RaakaAine raakaAine) throws SQLException {
+    public RaakaAine update(RaakaAine raakaAine) throws SQLException {
 
         Connection yhteys = database.getConnection();
         PreparedStatement stmt = yhteys.prepareStatement("UPDATE RaakaAine SET nimi = ?");

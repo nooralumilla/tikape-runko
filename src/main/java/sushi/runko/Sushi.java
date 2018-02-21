@@ -3,8 +3,8 @@ package sushi.runko;
 
 public class Sushi {
     
-    private Integer id;
-    private String nimi;
+    Integer id;
+    String nimi;
     
     
     public Sushi(Integer id, String nimi) {
