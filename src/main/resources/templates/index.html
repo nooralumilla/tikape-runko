@@ -14,6 +14,10 @@
         <ul>
             <li th:each="arvo: ${sushit}">
                 <a th:href="${'/sushit/' + arvo.id}"><span th:text="${arvo.nimi}">Sushi nimi + linkki</span></a>
+                
+                <form th:action="@{~/delete/{sushi_id}(sushi_id=${arvo.id})}" method="POST">
+                    <input type="submit" value="Poista"/>
+                </form>
             </li>
         </ul>
 

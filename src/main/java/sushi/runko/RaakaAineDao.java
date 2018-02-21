@@ -66,6 +66,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
 
         stmt.close();
         yhteys.close();
+        
     }
 
     @Override

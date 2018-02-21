@@ -1,5 +1,8 @@
 package sushi.runko;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
 import spark.ModelAndView;
 import spark.Spark;
@@ -64,6 +67,23 @@ public class Main {
             res.redirect("/ainekset");
             return "";
         });
+        
+        
+        Spark.post("/delete/:sushi_id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":sushi_id"));
+            sushiDao.delete(id);
+            res.redirect("/");
+            return "";
+        });
+        
+   
+        Spark.post("/poista/:raakaAine_id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":raakaAine_id"));
+            raakaAineDao.delete(id);
+            res.redirect("/ainekset");
+            return "";
+        });
+        
 
     }
 }
