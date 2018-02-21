@@ -7,8 +7,9 @@
 
     <body>
         <ol>
-            <li th:each="raakaaine: ${ainekset}">
-                <span th:text="${raakaaine.nimi}">aineksen nimi</span> <a th:href="${'/ainekset/' + raakaaine.id}">linkki</a>
+            <li th:each="arvo: ${aineksia}">
+                <!--<span th:text="${arvo.id}">1</span>-->
+                <span th:text="${arvo.nimi}">Essi esimerkki</span>
             </li>
         </ol>
     </body>

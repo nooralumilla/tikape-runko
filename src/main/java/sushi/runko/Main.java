@@ -11,18 +11,19 @@ public class Main {
         Database tietokanta = new Database("jdbc:sqlite:raakaaineet.db");
 
         RaakaAineDao raakaAineDao = new RaakaAineDao(tietokanta);
+        SushiDao sushiDao = new SushiDao(tietokanta);
 
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("/", raakaAineDao.findAll());
-//            System.out.println(raakaAineDao.findOne(1).toString());
+            map.put("aineksia", raakaAineDao.findAll());
+            map.put("sushit", sushiDao.findAll());
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
 
         Spark.get("/ainekset", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("/ainekset", raakaAineDao.findAll());
+            map.put("aineksia", raakaAineDao.findAll());
 
             return new ModelAndView(map, "ainekset");
         }, new ThymeleafTemplateEngine());
