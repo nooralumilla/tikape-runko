@@ -29,8 +29,8 @@ public class SushiDao implements Dao<Sushi, Integer> {
         }
 
         Sushi s = new Sushi(rs.getInt("id"), rs.getString("nimi"));
-        stmt.close();
         rs.close();
+        stmt.close();
         yhteys.close();
 
         return s;
@@ -49,8 +49,8 @@ public class SushiDao implements Dao<Sushi, Integer> {
         while (tulos.next()) {
             sushit.add(new Sushi(tulos.getInt("id"), tulos.getString("nimi")));
         }
-        stmt.close();
         tulos.close();
+        stmt.close();
         yhteys.close();
 
         return sushit;
@@ -72,12 +72,12 @@ public class SushiDao implements Dao<Sushi, Integer> {
 
     @Override
     public Sushi saveOrUpdate(Sushi sushi) throws SQLException {
-         if (sushi.id == null) {
+        if (sushi.id == null) {
             return save(sushi);
         } else {
             return update(sushi);
         }
- 
+
     }
 
     public Sushi save(Sushi sushi) throws SQLException {
@@ -88,7 +88,7 @@ public class SushiDao implements Dao<Sushi, Integer> {
         stmt.executeUpdate();
         stmt.close();
 
-        stmt = yhteys.prepareStatement("SELECT * FROM RaakaAine WHERE nimi = ?");
+        stmt = yhteys.prepareStatement("SELECT * FROM Sushi WHERE nimi = ?");
         stmt.setString(1, sushi.getNimi());
 
         ResultSet rs = stmt.executeQuery();
@@ -96,8 +96,8 @@ public class SushiDao implements Dao<Sushi, Integer> {
 
         Sushi s = new Sushi(rs.getInt("id"), rs.getString("nimi"));
 
-        stmt.close();
         rs.close();
+        stmt.close();
 
         yhteys.close();
         return s;

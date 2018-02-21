@@ -48,6 +48,22 @@ public class Main {
             res.redirect("/");
             return "";
         });
+        
+        Spark.post("/sushit", (req, res) -> {
+            String nimi = req.queryParams("sushinNimi");
+            sushiDao.saveOrUpdate(new Sushi(null, nimi));
+
+            res.redirect("/sushit");
+            return "";
+        });
+        
+        Spark.post("/ainekset", (req, res) -> {
+            String nimi = req.queryParams("raakaAineenNimi");
+            raakaAineDao.saveOrUpdate(new RaakaAine(null, nimi));
+
+            res.redirect("/ainekset");
+            return "";
+        });
 
     }
 }
