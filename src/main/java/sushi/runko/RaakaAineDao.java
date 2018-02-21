@@ -29,8 +29,8 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         }
 
         RaakaAine r = new RaakaAine(rs.getInt("id"), rs.getString("nimi"));
-        stmt.close();
         rs.close();
+        stmt.close();
         yhteys.close();
 
         return r;
@@ -48,8 +48,8 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         while (tulos.next()) {
             raakaAineet.add(new RaakaAine(tulos.getInt("id"), tulos.getString("nimi")));
         }
-        stmt.close();
         tulos.close();
+        stmt.close();
         yhteys.close();
 
         return raakaAineet;
@@ -95,8 +95,8 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
 
         RaakaAine r = new RaakaAine(rs.getInt("id"), rs.getString("nimi"));
 
-        stmt.close();
         rs.close();
+        stmt.close();
 
         yhteys.close();
 

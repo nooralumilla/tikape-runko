@@ -7,15 +7,21 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h2>Tervetuloa tee-se-itse-sushi-ravintolaan!</h2>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
+        <h4>Sushilistaus</h4>
 
         <ul>
-            <li><a href="sushit/2/">Sushi</a></li>
-            <li><a href="sushit/1/">Erilainen sushi</a></li>
+            <li th:each="arvo: ${sushit}">
+                <a th:href="${'/sushit/' + arvo.id}"><span th:text="${arvo.nimi}">Sushi nimi + linkki</span></a>
+            </li>
         </ul>
 
+<<<<<<< HEAD
         <p><a href="/ainekset">T&auml;st&auml; raaka-ainelistaukseen.</a></p>
+=======
+        <p><a href="/ainekset">T&auml;st&auml; raaka-ainelistaukseen</a></p>
+        <p><a href="/sushit">Lis&auml;&auml; uusi sushi</a></p>
+>>>>>>> cd90f77c6b5fbc67e1253fd0fffa7a8a67f3810c
     </body>
 </html>

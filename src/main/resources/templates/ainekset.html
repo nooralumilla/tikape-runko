@@ -1,15 +1,28 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Ainekset</title>
+        <title>Raaka-aine listaus</title>
         <meta charset="UTF-8" />
     </head>
 
     <body>
+        <h2>Raaka-aineet</h2>
+        
         <ol>
-            <li th:each="raakaaine: ${ainekset}">
-                <span th:text="${raakaaine.nimi}">aineksen nimi</span> <a th:href="${'/ainekset/' + raakaaine.id}">linkki</a>
+            <li th:each="arvo: ${aineksia}">
+                <span th:text="${arvo.nimi}">Essi esimerkki</span>
             </li>
         </ol>
+        
+        <h4>Lis&auml;&auml; uusi raaka-aine</h4>
+        
+        <form method="POST" action="">
+            Raaka-aineen nimi<br/>
+            <input type="text" name="raakaAineenNimi"/>
+            <input type="submit" value="Lis&auml;&auml;"/><br/>
+        </form>
+        
+        <p><a href="/">Takaisin etusivulle</a></p>
+        
     </body>
 </html>
