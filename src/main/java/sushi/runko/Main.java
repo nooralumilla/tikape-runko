@@ -27,6 +27,20 @@ public class Main {
 
             return new ModelAndView(map, "ainekset");
         }, new ThymeleafTemplateEngine());
+        
+        Spark.get("/sushit", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("sushit", sushiDao.findAll());
+
+            return new ModelAndView(map, "sushit");
+        }, new ThymeleafTemplateEngine());
+        
+//        Spark.get("/sushit/:id", (req, res) -> {
+//            HashMap map = new HashMap<>();
+//            map.put("sushi", raakaAineDao.findOne(:id));
+//
+//            return new ModelAndView(map, "ainekset");
+//        }, new ThymeleafTemplateEngine());
 
         Spark.post("/", (req, res) -> {
             raakaAineDao.saveOrUpdate(new RaakaAine(null, req.queryParams("nimi")));
