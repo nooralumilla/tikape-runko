@@ -8,7 +8,7 @@
     <body>
         <h2>Raaka-aineet</h2>
 
-        <ol>
+        <ul>
             <li th:each="arvo: ${aineksia}">
                 <span th:text="${arvo.nimi}">Essi esimerkki</span>
 
@@ -16,7 +16,7 @@
                     <input type="submit" value="Poista"/>
                 </form>
             </li>
-        </ol>
+        </ul>
 
         <h4>Lis&auml;&auml; uusi raaka-aine</h4>
 

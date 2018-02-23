@@ -30,28 +30,27 @@ public class Main {
 
             return new ModelAndView(map, "ainekset");
         }, new ThymeleafTemplateEngine());
-        
+
         Spark.get("/sushit", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("sushit", sushiDao.findAll());
 
             return new ModelAndView(map, "sushit");
         }, new ThymeleafTemplateEngine());
-        
+
 //        Spark.get("/sushit/:id", (req, res) -> {
 //            HashMap map = new HashMap<>();
 //            map.put("sushi", raakaAineDao.findOne(:id));
 //
 //            return new ModelAndView(map, "ainekset");
 //        }, new ThymeleafTemplateEngine());
-
         Spark.post("/", (req, res) -> {
             raakaAineDao.saveOrUpdate(new RaakaAine(null, req.queryParams("nimi")));
 
             res.redirect("/");
             return "";
         });
-        
+
         Spark.post("/sushit", (req, res) -> {
             String nimi = req.queryParams("sushinNimi");
             sushiDao.saveOrUpdate(new Sushi(null, nimi));
@@ -59,7 +58,7 @@ public class Main {
             res.redirect("/sushit");
             return "";
         });
-        
+
         Spark.post("/ainekset", (req, res) -> {
             String nimi = req.queryParams("raakaAineenNimi");
             raakaAineDao.saveOrUpdate(new RaakaAine(null, nimi));
@@ -67,23 +66,28 @@ public class Main {
             res.redirect("/ainekset");
             return "";
         });
-        
-        
+
         Spark.post("/delete/:sushi_id", (req, res) -> {
             int id = Integer.parseInt(req.params(":sushi_id"));
             sushiDao.delete(id);
             res.redirect("/");
             return "";
         });
-        
-   
+
         Spark.post("/poista/:raakaAine_id", (req, res) -> {
             int id = Integer.parseInt(req.params(":raakaAine_id"));
             raakaAineDao.delete(id);
             res.redirect("/ainekset");
             return "";
         });
-        
+
+        Spark.post("/sushiRaakaAineet/:sushiRaakaAine_id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":sushiRaakaAine_id"));
+            //
+            //tähän toiminnallisuutta että lisätään raaka-aine valitulle sushille
+            res.redirect("/sushit");
+            return "";
+        });
 
     }
 }
