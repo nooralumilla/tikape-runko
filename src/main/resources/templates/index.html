@@ -7,10 +7,23 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h2>Tervetuloa tee-se-itse-sushi-ravintolaan!</h2>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
+        <h4>Sushilistaus</h4>
 
-        <p><a href="/opiskelijat">Tästä opiskelijalistaukseen.</a></p>
+        <ul>
+            <li th:each="arvo: ${sushit}">
+                <a th:href="${'/sushit/' + arvo.id}"><span th:text="${arvo.nimi}">Sushi nimi + linkki</span></a>
+                
+                <form th:action="@{~/delete/{sushi_id}(sushi_id=${arvo.id})}" method="POST">
+                    <input type="submit" value="Poista"/>
+                </form>
+            </li>
+        </ul>
+
+
+        <p><a href="/ainekset">T&auml;st&auml; raaka-ainelistaukseen</a></p>
+        <p><a href="/sushit">Lis&auml;&auml; uusi sushi</a></p>
+
     </body>
 </html>

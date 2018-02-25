@@ -13,4 +13,3 @@ public interface Dao<T, K> {
 
     T saveOrUpdate(T object) throws SQLException;
 }
-//
