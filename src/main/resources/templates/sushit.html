@@ -12,6 +12,10 @@
         <ul>
             <li th:each="arvo: ${sushit}">
                 <a th:href="${'/sushit/' + arvo.id}"><span th:text="${arvo.nimi}">Sushi nimi + linkki</span></a>
+                
+                <form th:action="@{~/poista/{Sushi_id}(Sushi_id=${arvo.id})}" method="POST">
+                    <input type="submit" value="Poista"/>
+                </form>
             </li>
         </ul>
 
@@ -38,7 +42,7 @@
                 <option value="1" th:each="arvo: ${aineksia}"></option>
                 <!--<span th.href="${arvo.nimi}"></span>-->              
                 <!--ei tää toimi, yritin googlata mut en löytäny miten sais listan tänne tuotua-->
-                <option value="2">Levä</option>
+                <option value="2">Lev&auml;</option>
             </select><br/>
             
             M&auml;&auml;r&auml;<br/>

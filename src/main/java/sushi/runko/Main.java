@@ -44,6 +44,7 @@ public class Main {
 //
 //            return new ModelAndView(map, "ainekset");
 //        }, new ThymeleafTemplateEngine());
+
         Spark.post("/", (req, res) -> {
             raakaAineDao.saveOrUpdate(new RaakaAine(null, req.queryParams("nimi")));
 
@@ -67,10 +68,10 @@ public class Main {
             return "";
         });
 
-        Spark.post("/delete/:sushi_id", (req, res) -> {
+        Spark.post("/poista/:sushi_id", (req, res) -> {
             int id = Integer.parseInt(req.params(":sushi_id"));
             sushiDao.delete(id);
-            res.redirect("/");
+            res.redirect("/sushit");
             return "";
         });
 
