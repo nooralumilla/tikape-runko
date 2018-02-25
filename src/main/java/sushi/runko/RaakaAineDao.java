@@ -1,6 +1,5 @@
 package sushi.runko;
 
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +18,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     @Override
     public RaakaAine findOne(Integer key) throws SQLException {
         Connection yhteys = database.getConnection();
-        PreparedStatement stmt = yhteys.prepareStatement("SELECT * FROM RaakaAine id = ?");
+        PreparedStatement stmt = yhteys.prepareStatement("SELECT * FROM RaakaAine WHERE id = ?");
         stmt.setInt(1, key);
 
         ResultSet rs = stmt.executeQuery();

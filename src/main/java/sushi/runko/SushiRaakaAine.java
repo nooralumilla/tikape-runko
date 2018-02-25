@@ -6,16 +6,14 @@ public class SushiRaakaAine {
     
     private Integer raakaAineId;
     private Integer SushiId;
-    private Sushi sushi;
-    private RaakaAine raakaAine;
-    private Integer maara;
+    private String maara;
     private String ohje;
     private Integer jarjestysNumero;
     
     
-    public SushiRaakaAine(Sushi sushi, RaakaAine raakaAine, Integer maara, Integer jarjestysNumero, String ohje) {
-        this.raakaAineId = raakaAine.getId();
-        this.SushiId = sushi.getId();
+    public SushiRaakaAine(Integer sushiId, Integer raakaAineId, String maara, Integer jarjestysNumero, String ohje) {
+        this.raakaAineId = raakaAineId;
+        this.SushiId = sushiId;
         this.maara = maara;
         this.jarjestysNumero = jarjestysNumero;
         this.ohje = ohje;
@@ -37,11 +35,11 @@ public class SushiRaakaAine {
         this.SushiId = SushiId;
     }
 
-    public Integer getMaara() {
+    public String getMaara() {
         return maara;
     }
 
-    public void setMaara(Integer maara) {
+    public void setMaara(String maara) {
         this.maara = maara;
     }
 

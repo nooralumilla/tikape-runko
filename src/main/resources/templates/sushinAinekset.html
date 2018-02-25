@@ -1,0 +1,20 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Sushin raaka-aineet</title>
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <h2>T&auml;h&auml;n sushin nimi</h2>
+
+        <ul>
+            <li th:each="arvo: ${sushinRaakaAineet}">
+                <span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span>
+            </li>
+        </ul>
+
+        <p><a href="/">Takaisin etusivulle</a></p>
+    </body>
+</html>

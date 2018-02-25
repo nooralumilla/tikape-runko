@@ -1,9 +1,11 @@
 package sushi.runko;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
@@ -15,6 +17,8 @@ public class Main {
 
         RaakaAineDao raakaAineDao = new RaakaAineDao(tietokanta);
         SushiDao sushiDao = new SushiDao(tietokanta);
+        SushiRaakaAineDao sushiRaakaAineDao = new SushiRaakaAineDao(tietokanta);
+        
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("aineksia", raakaAineDao.findAll());
@@ -37,12 +41,28 @@ public class Main {
             return new ModelAndView(map, "sushit");
         }, new ThymeleafTemplateEngine());
 
-//        Spark.get("/sushit/:id", (req, res) -> {
-//            HashMap map = new HashMap<>();
-//            map.put("sushi", raakaAineDao.findOne(:id));
-//
-//            return new ModelAndView(map, "ainekset");
-//        }, new ThymeleafTemplateEngine());
+        Spark.get("/sushit/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            HashMap map = new HashMap<>();
+            List<SushiRaakaAine> sushinRaakaAineidenSushiRaakaAineet = sushiRaakaAineDao.findSushi(id);
+            
+            ArrayList<RaakaAine> SushinRaakaAineidenRaakaAineet = new ArrayList();
+            sushinRaakaAineidenSushiRaakaAineet.forEach(sushiRaakaAine -> {
+                Integer raakaAineenId = sushiRaakaAine.getRaakaAineId();
+                try {
+                    SushinRaakaAineidenRaakaAineet.add(raakaAineDao.findOne(raakaAineenId));
+                } catch (SQLException ex) {
+                    System.out.println("Error: "+ex);
+                }
+            });
+            SushinRaakaAineidenRaakaAineet.forEach(r -> {
+                System.out.println(r.getNimi());
+            });
+            map.put("sushinRaakaAineet", SushinRaakaAineidenRaakaAineet);
+            
+            return new ModelAndView(map, "sushinAinekset");
+        }, new ThymeleafTemplateEngine());
+        
         Spark.post("/", (req, res) -> {
             raakaAineDao.saveOrUpdate(new RaakaAine(null, req.queryParams("nimi")));
 
