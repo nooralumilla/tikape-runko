@@ -35,17 +35,17 @@
         <h4>Lis&auml;&auml; raaka-aine sushille</h4>
 
         <form method="POST" action="">
-            <!--            Lis&auml;tt&auml;v&auml; raaka-aine<br/>
-                        <select name="raaka-aine">
-                            Lisää tähän raaka-aineiden pudotusvalikon valinnat
+                        Lis&auml;tt&auml;v&auml; raaka-aine<br/>
+                        <select th:field="*{aineksia}" name="raakaAine">
+                            <!-- Lisää tähän raaka-aineiden pudotusvalikon valinnat-->
             
-                            <option value="1" th:each="arvo: ${aineksia}"></option>
-                            <span th.href="${arvo.nimi}"></span>              
-                            ei tää toimi, yritin googlata mut en löytäny miten sais listan tänne tuotua
-                            <option value="2">Lev&auml;</option>
-                        </select><br/>-->
-            Lis&auml;tt&auml;v&auml;n raaka-aineen indeksi<br/>
-            <input type="text" name="raakaAine"/><br/>
+                            <option th:each="arvo: ${aineksia}" th:value="${arvo.id}" th:text="${arvo.nimi}"></option>
+                            <!--<span th.href="${arvo.nimi}"></span>
+            
+                            <option value="2">Lev&auml;</option>-->
+                        </select><br/>
+        <!--    Lis&auml;tt&auml;v&auml;n raaka-aineen indeksi<br/>
+            <input type="text" name="raakaAine"/><br/>-->
 
             M&auml;&auml;r&auml;<br/>
             <input type="text" name="maara"/><br/>
