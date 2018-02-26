@@ -59,6 +59,7 @@ public class Main {
                 System.out.println(r.getNimi());
             });
             map.put("sushinRaakaAineet", SushinRaakaAineidenRaakaAineet);
+            map.put("sushinNimi", sushiDao.findOne(id));
             
             return new ModelAndView(map, "sushinAinekset");
         }, new ThymeleafTemplateEngine());

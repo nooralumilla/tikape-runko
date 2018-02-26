@@ -18,7 +18,7 @@ public class SushiDao implements Dao<Sushi, Integer> {
     @Override
     public Sushi findOne(Integer key) throws SQLException {
         Connection yhteys = database.getConnection();
-        PreparedStatement stmt = yhteys.prepareStatement("SELECT * FROM Sushi id = ?");
+        PreparedStatement stmt = yhteys.prepareStatement("SELECT * FROM Sushi WHERE id = ?");
         stmt.setInt(1, key);
 
         ResultSet rs = stmt.executeQuery();
