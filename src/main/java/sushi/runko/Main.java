@@ -18,7 +18,7 @@ public class Main {
         RaakaAineDao raakaAineDao = new RaakaAineDao(tietokanta);
         SushiDao sushiDao = new SushiDao(tietokanta);
         SushiRaakaAineDao sushiRaakaAineDao = new SushiRaakaAineDao(tietokanta);
-        
+
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("aineksia", raakaAineDao.findAll());
@@ -45,24 +45,25 @@ public class Main {
             int id = Integer.parseInt(req.params(":id"));
             HashMap map = new HashMap<>();
             List<SushiRaakaAine> sushinRaakaAineidenSushiRaakaAineet = sushiRaakaAineDao.findSushi(id);
-            
+
             ArrayList<RaakaAine> SushinRaakaAineidenRaakaAineet = new ArrayList();
             sushinRaakaAineidenSushiRaakaAineet.forEach(sushiRaakaAine -> {
                 Integer raakaAineenId = sushiRaakaAine.getRaakaAineId();
                 try {
                     SushinRaakaAineidenRaakaAineet.add(raakaAineDao.findOne(raakaAineenId));
                 } catch (SQLException ex) {
-                    System.out.println("Error: "+ex);
+                    System.out.println("Error: " + ex);
                 }
             });
             SushinRaakaAineidenRaakaAineet.forEach(r -> {
                 System.out.println(r.getNimi());
             });
             map.put("sushinRaakaAineet", SushinRaakaAineidenRaakaAineet);
-            
+            map.put("aineksia", raakaAineDao.findAll());
+
             return new ModelAndView(map, "sushinAinekset");
         }, new ThymeleafTemplateEngine());
-        
+
         Spark.post("/", (req, res) -> {
             raakaAineDao.saveOrUpdate(new RaakaAine(null, req.queryParams("nimi")));
 
@@ -78,11 +79,11 @@ public class Main {
             return "";
         });
 
-        Spark.post("/sushit/raaka-aine", (req, res) -> {
-            // SushiRaakaAineen parametrit req.queryParamsista tähän
+        Spark.post("/sushit/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            sushiRaakaAineDao.saveOrUpdate(new SushiRaakaAine(id, Integer.parseInt(req.queryParams("raakaAine")), req.queryParams("maara"), Integer.parseInt(req.queryParams("jarjestys")), req.queryParams("ohje")));
 
-            // sushiRaakaAineDao.saveOrUpdate(new SushiRaakaAine(Sushi sushi, RaakaAine raakaAine, Integer maara, Integer jarjestysNumero, String ohje));
-            res.redirect("/sushit");
+            res.redirect("/sushit/"+id);
             return "";
         });
 

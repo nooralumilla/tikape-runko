@@ -7,6 +7,9 @@
     </head>
 
     <body>
+
+
+
         <h2>T&auml;h&auml;n sushin nimi</h2>
 
         <ul>
@@ -15,6 +18,47 @@
             </li>
         </ul>
 
+
+        <h4>Lis&auml;&auml; raaka-aine sushille</h4>
+
+        <form method="POST" action="">
+            <!--            Lis&auml;tt&auml;v&auml; raaka-aine<br/>
+                        <select name="raaka-aine">
+                            Lisää tähän raaka-aineiden pudotusvalikon valinnat
+            
+                            <option value="1" th:each="arvo: ${aineksia}"></option>
+                            <span th.href="${arvo.nimi}"></span>              
+                            ei tää toimi, yritin googlata mut en löytäny miten sais listan tänne tuotua
+                            <option value="2">Lev&auml;</option>
+                        </select><br/>-->
+            Lis&auml;tt&auml;v&auml;n raaka-aineen indeksi<br/>
+            <input type="text" name="raakaAine"/><br/>
+
+            M&auml;&auml;r&auml;<br/>
+            <input type="text" name="maara"/><br/>
+
+            J&auml;rjestys<br/>
+            <input type="text" name="jarjestys"/><br/>
+
+            Ohje<br/>
+            <input type="text" name="ohje"/><br/>
+
+
+            <input type="submit" value="Lis&auml;&auml;"/>
+        </form>
+
+        
+        <h4>Raaka-aineiden indeksit listattuna</h4>
+        <ul>
+            <li th:each="arvo: ${aineksia}">
+                <span th:text="${arvo.id}">Raaka-aineiden listaus</span>
+                <span th:text="${arvo.nimi}">Raaka-aineiden listaus</span>
+            </li>
+        </ul>
+
         <p><a href="/">Takaisin etusivulle</a></p>
+
+
     </body>
+
 </html>

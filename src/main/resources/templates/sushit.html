@@ -27,39 +27,6 @@
             <input type="submit" value="Lis&auml;&auml;"/>
         </form>
 
-        <h4>Lis&auml;&auml; raaka-aine sushille</h4>
-
-        <form method="POST" action="">
-            Sushin nimi:<br/>
-            <select name="sushi">
-                <!--Lisää tähän sushien pudotusvalikon valinnat-->
-            </select><br/>
-            
-            Lis&auml;tt&auml;v&auml; raaka-aine<br/>
-            <select name="raaka-aine">
-                <!--Lisää tähän raaka-aineiden pudotusvalikon valinnat-->
-                
-                <option value="1" th:each="arvo: ${aineksia}"></option>
-                <!--<span th.href="${arvo.nimi}"></span>-->              
-                <!--ei tää toimi, yritin googlata mut en löytäny miten sais listan tänne tuotua-->
-                <option value="2">Lev&auml;</option>
-            </select><br/>
-            
-            M&auml;&auml;r&auml;<br/>
-            <input type="text"/><br/>
-            
-            J&auml;rjestys<br/>
-            <input type="text"/><br/>
-            
-            Ohje<br/>
-            <input type="text"/><br/>
-            
-            
-            <input type="submit" value="Lis&auml;&auml;"/>
-        </form>
-
-
-
         <p><a href="/">Takaisin etusivulle</a></p>
     </body>
 </html>

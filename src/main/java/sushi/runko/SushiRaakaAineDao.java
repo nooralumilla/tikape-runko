@@ -18,7 +18,7 @@ public class SushiRaakaAineDao implements Dao<SushiRaakaAine, Integer> {
     @Override
     public SushiRaakaAine findOne(Integer key) throws SQLException {
         Connection yhteys = database.getConnection();
-        PreparedStatement stmt = yhteys.prepareStatement("SELECT * FROM SushiRaakaAine id = ?");
+        PreparedStatement stmt = yhteys.prepareStatement("SELECT * FROM SushiRaakaAine WHERE id = ?");
         stmt.setInt(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -70,9 +70,9 @@ public class SushiRaakaAineDao implements Dao<SushiRaakaAine, Integer> {
     public SushiRaakaAine saveOrUpdate(SushiRaakaAine sushiRaakaAine) throws SQLException {
         Connection yhteys = database.getConnection();
 
-        PreparedStatement stmt = yhteys.prepareStatement("INSERT INTO SushiRaakaAine (raakaAine_id, sushi_id, maara, jarjestysnumero, ohje) VALUES (?, ?, ?, ?, ?)");
-        stmt.setInt(1, sushiRaakaAine.getRaakaAineId());
-        stmt.setInt(2, sushiRaakaAine.getSushiId());
+        PreparedStatement stmt = yhteys.prepareStatement("INSERT INTO SushiRaakaAine (sushi_id, raakaAine_id, maara, jarjestys, ohje) VALUES (?, ?, ?, ?, ?)");
+        stmt.setInt(1, sushiRaakaAine.getSushiId());
+        stmt.setInt(2, sushiRaakaAine.getRaakaAineId());
         stmt.setString(3, sushiRaakaAine.getMaara());
         stmt.setInt(4, sushiRaakaAine.getJarjestysNumero());
         stmt.setString(5, sushiRaakaAine.getOhje());
@@ -80,7 +80,7 @@ public class SushiRaakaAineDao implements Dao<SushiRaakaAine, Integer> {
         stmt.executeUpdate();
         stmt.close();
 
-        stmt = yhteys.prepareStatement("SELECT * FROM Sushi WHERE sushi_id = ? AND raakaAine_id = ?");
+        stmt = yhteys.prepareStatement("SELECT * FROM SushiRaakaAine WHERE sushi_id = ? AND raakaAine_id = ?");
         stmt.setInt(1, sushiRaakaAine.getSushiId());
         stmt.setInt(2, sushiRaakaAine.getRaakaAineId());
 
