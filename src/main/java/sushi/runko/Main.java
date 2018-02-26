@@ -59,6 +59,7 @@ public class Main {
             map.put("SushiinLiittyvatSushiRaakaAineet", sushinRaakaAineidenSushiRaakaAineet);
             map.put("aineksia", raakaAineDao.findAll());
             map.put("sushinNimi", sushiDao.findOne(id));
+            map.put("sushiId", id);
             
             return new ModelAndView(map, "sushinAinekset");
         }, new ThymeleafTemplateEngine());
@@ -96,6 +97,14 @@ public class Main {
 
         Spark.post("/sushit/poista/:sushi_id", (req, res) -> {
             int id = Integer.parseInt(req.params(":sushi_id"));
+            List<SushiRaakaAine> poistettavatSushiRaakaAineet = sushiRaakaAineDao.findSushi(id);
+            poistettavatSushiRaakaAineet.forEach(sushiRaakaAine -> {
+                try {
+                    sushiRaakaAineDao.delete(sushiRaakaAine.getSushiId(), sushiRaakaAine.getRaakaAineId());
+                } catch (SQLException ex) {
+                    System.out.println("Error: "+ex);
+                }
+            });
             sushiDao.delete(id);
             res.redirect("/sushit");
             return "";
@@ -108,11 +117,11 @@ public class Main {
             return "";
         });
 
-        Spark.post("/sushiRaakaAineet/:sushiRaakaAine_id", (req, res) -> {
-            int id = Integer.parseInt(req.params(":sushiRaakaAine_id"));
-            //
-            //tähän toiminnallisuutta että lisätään raaka-aine valitulle sushille
-            res.redirect("/sushit");
+        Spark.post("/sushit/:id/:raakaAineId", (req, res) -> {
+            int sushiId = Integer.parseInt(req.params(":id"));
+            int raakaAineId = Integer.parseInt(req.params(":raakaAineId"));
+            sushiRaakaAineDao.delete(sushiId, raakaAineId);
+            res.redirect("/sushit/"+sushiId);
             return "";
         });
     }

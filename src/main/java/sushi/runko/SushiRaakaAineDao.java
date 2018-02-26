@@ -54,12 +54,12 @@ public class SushiRaakaAineDao implements Dao<SushiRaakaAine, Integer> {
         return sushiRaakaAineet;
     }
 
-    @Override
-    public void delete(Integer key) throws SQLException {
+    public void delete(Integer sushiId, Integer raakaAineid) throws SQLException {
         Connection yhteys = database.getConnection();
-        PreparedStatement stmt = yhteys.prepareStatement("DELETE FROM SushiRaakaAine WHERE id = ?");
+        PreparedStatement stmt = yhteys.prepareStatement("DELETE FROM SushiRaakaAine WHERE sushi_id = ? AND raakaAine_id = ?");
 
-        stmt.setInt(1, key);
+        stmt.setInt(1, sushiId);
+        stmt.setInt(2, raakaAineid);
         stmt.executeUpdate();
 
         stmt.close();
@@ -130,5 +130,10 @@ public class SushiRaakaAineDao implements Dao<SushiRaakaAine, Integer> {
         yhteys.close();
 
         return RaakaAineenSushit;
+    }
+
+    @Override
+    public void delete(Integer key) throws SQLException {
+        
     }
 }
