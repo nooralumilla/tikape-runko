@@ -55,17 +55,11 @@ public class Main {
                     System.out.println("Error: " + ex);
                 }
             });
-            SushinRaakaAineidenRaakaAineet.forEach(r -> {
-                System.out.println(r.getNimi());
-            });
             map.put("sushinRaakaAineet", SushinRaakaAineidenRaakaAineet);
-<<<<<<< HEAD
+            map.put("SushiinLiittyvatSushiRaakaAineet", sushinRaakaAineidenSushiRaakaAineet);
             map.put("aineksia", raakaAineDao.findAll());
-
-=======
             map.put("sushinNimi", sushiDao.findOne(id));
             
->>>>>>> 8fdba27491b7cfbade2ac37fc6cd0228bb6ac562
             return new ModelAndView(map, "sushinAinekset");
         }, new ThymeleafTemplateEngine());
 

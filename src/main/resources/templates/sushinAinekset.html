@@ -7,20 +7,24 @@
     </head>
 
     <body>
-<<<<<<< HEAD
-
-
-
-        <h2>T&auml;h&auml;n sushin nimi</h2>
-=======
+        
         <h2>
             <span th:text="${sushinNimi.nimi}">sushin nimi</span>
         </h2>
->>>>>>> 8fdba27491b7cfbade2ac37fc6cd0228bb6ac562
 
         <ul>
             <li th:each="arvo: ${sushinRaakaAineet}">
                 <span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span>
+                <ul>
+                    <li th:each="raakaAine: ${SushiinLiittyvatSushiRaakaAineet}" th:if="${arvo.id==raakaAine.raakaAineId}">
+                        <span>M&auml;&auml;r&auml;: </span>
+                        <span th:text="${raakaAine.maara}">Sushin raaka-aineiden listaus</span>
+                        <span>, J&auml;rjestysnumero: </span>
+                        <span th:text="${raakaAine.jarjestysNumero}">Sushin raaka-aineiden listaus</span>
+                        <span>ja ohje: </span>
+                        <span th:text="${raakaAine.ohje}">Sushin raaka-aineiden listaus</span>
+                    </li>
+                </ul>
             </li>
         </ul>
 
