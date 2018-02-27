@@ -12,7 +12,7 @@
             <li th:each="arvo: ${aineksia}">
                 <a th:href="${'/aines/' + arvo.id}"><span th:text="${arvo.nimi}">Raaka-aineiden listaus</span></a>
 
-                <form th:action="@{~/ainekset/poista/{raakaAine_id}(raakaAine_id=${arvo.id})}" method="POST">
+                <form th:action="@{~/ainekset/poista/{raakaAine_id}(raakaAine_id=${arvo.id})}" method="POST" style="display: inline-block">
                     <input type="submit" value="Poista"/>
                 </form>
             </li>
@@ -20,7 +20,7 @@
 
         <h4>Lis&auml;&auml; uusi raaka-aine</h4>
 
-        <form method="POST" action="">
+        <form method="POST" action="" >
             Raaka-aineen nimi<br/>
             <input type="text" name="raakaAineenNimi"/>
             <input type="submit" value="Lis&auml;&auml;"/><br/>
