@@ -15,7 +15,7 @@
         <ul>
             <li th:each="arvo: ${sushinRaakaAineet}">
                 <span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span>
-                <form th:action="@{~/sushit/{sushiId}/{raakaAine_id}(sushiId= ${sushiId}, raakaAine_id=${arvo.id})}" method="POST">
+                <form th:action="@{~/sushit/{sushiId}/{raakaAine_id}(sushiId= ${sushiId}, raakaAine_id=${arvo.id})}" method="POST" style="display: inline-block">
                     <input type="submit" value="Poista"/>
                 </form>
                 <ul>
