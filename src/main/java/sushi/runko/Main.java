@@ -73,7 +73,11 @@ public class Main {
 
         Spark.post("/sushit", (req, res) -> {
             String nimi = req.queryParams("sushinNimi");
-            sushiDao.saveOrUpdate(new Sushi(null, nimi));
+            String tarkistaNimi = nimi.replaceAll("\\s+", "");
+
+            if (!tarkistaNimi.isEmpty()) {
+                sushiDao.saveOrUpdate(new Sushi(null, nimi));
+            }
 
             res.redirect("/sushit");
             return "";
