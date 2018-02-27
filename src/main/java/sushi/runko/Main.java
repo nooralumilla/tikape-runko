@@ -60,7 +60,7 @@ public class Main {
             map.put("aineksia", raakaAineDao.findAll());
             map.put("sushinNimi", sushiDao.findOne(id));
             map.put("sushiId", id);
-            
+
             return new ModelAndView(map, "sushinAinekset");
         }, new ThymeleafTemplateEngine());
 
@@ -83,14 +83,14 @@ public class Main {
             int id = Integer.parseInt(req.params(":id"));
             sushiRaakaAineDao.saveOrUpdate(new SushiRaakaAine(id, Integer.parseInt(req.queryParams("raakaAine")), req.queryParams("maara"), Integer.parseInt(req.queryParams("jarjestys")), req.queryParams("ohje")));
 
-            res.redirect("/sushit/"+id);
+            res.redirect("/sushit/" + id);
             return "";
         });
 
         Spark.post("/ainekset", (req, res) -> {
             String nimi = req.queryParams("raakaAineenNimi");
-            String tarkistaNimi = nimi.replaceAll("\\s+","");
-            
+            String tarkistaNimi = nimi.replaceAll("\\s+", "");
+
             if (!tarkistaNimi.isEmpty()) {
                 raakaAineDao.saveOrUpdate(new RaakaAine(null, nimi));
             }
@@ -106,7 +106,7 @@ public class Main {
                 try {
                     sushiRaakaAineDao.delete(sushiRaakaAine.getSushiId(), sushiRaakaAine.getRaakaAineId());
                 } catch (SQLException ex) {
-                    System.out.println("Error: "+ex);
+                    System.out.println("Error: " + ex);
                 }
             });
             sushiDao.delete(id);
@@ -116,6 +116,14 @@ public class Main {
 
         Spark.post("/ainekset/poista/:raakaAine_id", (req, res) -> {
             int id = Integer.parseInt(req.params(":raakaAine_id"));
+            List<SushiRaakaAine> poistettavatSushiRaakaAineet = sushiRaakaAineDao.findRaakaAine(id);
+            poistettavatSushiRaakaAineet.forEach(sushiRaakaAine -> {
+                try {
+                    sushiRaakaAineDao.delete(sushiRaakaAine.getSushiId(), sushiRaakaAine.getRaakaAineId());
+                } catch (SQLException ex) {
+                    System.out.println("Error: " + ex);
+                }
+            });
             raakaAineDao.delete(id);
             res.redirect("/ainekset");
             return "";
@@ -125,7 +133,7 @@ public class Main {
             int sushiId = Integer.parseInt(req.params(":id"));
             int raakaAineId = Integer.parseInt(req.params(":raakaAineId"));
             sushiRaakaAineDao.delete(sushiId, raakaAineId);
-            res.redirect("/sushit/"+sushiId);
+            res.redirect("/sushit/" + sushiId);
             return "";
         });
     }
