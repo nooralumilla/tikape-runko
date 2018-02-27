@@ -89,7 +89,11 @@ public class Main {
 
         Spark.post("/ainekset", (req, res) -> {
             String nimi = req.queryParams("raakaAineenNimi");
-            raakaAineDao.saveOrUpdate(new RaakaAine(null, nimi));
+            String tarkistaNimi = nimi.replaceAll("\\s+","");
+            
+            if (!tarkistaNimi.isEmpty()) {
+                raakaAineDao.saveOrUpdate(new RaakaAine(null, nimi));
+            }
 
             res.redirect("/ainekset");
             return "";
