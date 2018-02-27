@@ -10,7 +10,7 @@
 
         <ul>
             <li th:each="arvo: ${aineksia}">
-                <span th:text="${arvo.nimi}">Raaka-aineiden listaus</span>
+                <a th:href="${'/aines/' + arvo.id}"><span th:text="${arvo.nimi}">Raaka-aineiden listaus</span></a>
 
                 <form th:action="@{~/ainekset/poista/{raakaAine_id}(raakaAine_id=${arvo.id})}" method="POST">
                     <input type="submit" value="Poista"/>

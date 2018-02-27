@@ -40,6 +40,16 @@ public class Main {
 
             return new ModelAndView(map, "sushit");
         }, new ThymeleafTemplateEngine());
+        
+        Spark.get("/aines/:id", (req, res) -> {
+            Integer id = Integer.parseInt(req.params(":id"));
+            HashMap map = new HashMap<>();
+            map.put("sushit", sushiDao.findAll());
+            map.put("sushiRaakaAine", sushiRaakaAineDao.findRaakaAine(id));
+            map.put("aine", raakaAineDao.findOne(id));
+
+            return new ModelAndView(map, "aines");
+        }, new ThymeleafTemplateEngine());
 
         Spark.get("/sushit/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));

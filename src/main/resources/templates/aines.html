@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Raaka-aine</title>
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <h1 th:text="${aine.nimi}">Raaka-aineen nimi</h1>
+
+        <ul style="list-style: none;">
+            <li th:each="sushiRaakaAine: ${sushiRaakaAine}">
+                <ul>
+                    <li th:each="sushit: ${sushit}" th:if="${sushit.id==sushiRaakaAine.sushiId}">
+                        <a th:href="${'/sushit/' + sushit.id}"><span th:text="${sushit.nimi}">Listataan sushit</span></a>
+                    </li>
+                </ul>
+            </li> 
+        </ul>
+        <br/>
+        <p><a href="/ainekset">Takaisin raaka-ainelistaukseen</a></p>
+        <p><a href="/">Takaisin etusivulle</a></p>
+    </body>
+</html>

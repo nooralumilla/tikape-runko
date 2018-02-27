@@ -14,7 +14,7 @@
 
         <ul>
             <li th:each="arvo: ${sushinRaakaAineet}">
-                <span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span>
+                <a th:href="${'/aines/' + arvo.id}"><span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span></a>
                 <form th:action="@{~/sushit/{sushiId}/{raakaAine_id}(sushiId= ${sushiId}, raakaAine_id=${arvo.id})}" method="POST">
                     <input type="submit" value="Poista"/>
                 </form>
@@ -37,15 +37,8 @@
         <form method="POST" action="">
                         Lis&auml;tt&auml;v&auml; raaka-aine<br/>
                         <select th:field="*{aineksia}" name="raakaAine">
-                            <!-- Lisää tähän raaka-aineiden pudotusvalikon valinnat-->
-            
                             <option th:each="arvo: ${aineksia}" th:value="${arvo.id}" th:text="${arvo.nimi}"></option>
-                            <!--<span th.href="${arvo.nimi}"></span>
-            
-                            <option value="2">Lev&auml;</option>-->
                         </select><br/>
-        <!--    Lis&auml;tt&auml;v&auml;n raaka-aineen indeksi<br/>
-            <input type="text" name="raakaAine"/><br/>-->
 
             M&auml;&auml;r&auml;<br/>
             <input type="text" name="maara"/><br/>
@@ -59,7 +52,8 @@
 
             <input type="submit" value="Lis&auml;&auml;"/>
         </form>
-
+        <br/>
+        <p><a href="/sushit">Takaisin sushilistaukseen</a></p>
         <p><a href="/">Takaisin etusivulle</a></p>
 
 
