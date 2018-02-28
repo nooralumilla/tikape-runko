@@ -14,15 +14,12 @@
 
         <ul>
             <li th:each="arvo: ${sushinRaakaAineet}">
-<<<<<<< HEAD
+
                 <a th:href="${'/aines/' + arvo.id}"><span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span></a>
-                <form th:action="@{~/sushit/{sushiId}/{raakaAine_id}(sushiId= ${sushiId}, raakaAine_id=${arvo.id})}" method="POST">
-=======
-                <span th:text="${arvo.nimi}">Sushin raaka-aineiden listaus</span>
                 <form th:action="@{~/sushit/{sushiId}/{raakaAine_id}(sushiId= ${sushiId}, raakaAine_id=${arvo.id})}" method="POST" style="display: inline-block">
->>>>>>> f2b85baff021ae7c94476d3f5299b45f8b670364
                     <input type="submit" value="Poista"/>
                 </form>
+              
                 <ul>
                     <li th:each="raakaAine: ${SushiinLiittyvatSushiRaakaAineet}" th:if="${arvo.id==raakaAine.raakaAineId}">
                         <span>M&auml;&auml;r&auml;: </span>
@@ -36,14 +33,14 @@
             </li>
         </ul>
 
-
-        <h4>Lis&auml;&auml; raaka-aine sushille</h4>
+    
+        <h3>Lis&auml;&auml; raaka-aine sushille</h3>
 
         <form method="POST" action="">
-                        Lis&auml;tt&auml;v&auml; raaka-aine<br/>
-                        <select th:field="*{aineksia}" name="raakaAine">
-                            <option th:each="arvo: ${aineksia}" th:value="${arvo.id}" th:text="${arvo.nimi}"></option>
-                        </select><br/>
+            Lis&auml;tt&auml;v&auml; raaka-aine<br/>
+            <select th:field="*{aineksia}" name="raakaAine">
+                <option th:each="arvo: ${aineksia}" th:value="${arvo.id}" th:text="${arvo.nimi}"></option>
+            </select><br/>
 
             M&auml;&auml;r&auml;<br/>
             <input type="text" name="maara"/><br/>

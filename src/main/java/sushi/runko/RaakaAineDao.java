@@ -91,7 +91,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         stmt.setString(1, raakaAine.getNimi());
 
         ResultSet rs = stmt.executeQuery();
-        rs.next(); // vain 1 tulos
+        rs.next();
 
         RaakaAine r = new RaakaAine(rs.getInt("id"), rs.getString("nimi"));
 
