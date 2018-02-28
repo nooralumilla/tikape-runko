@@ -13,6 +13,10 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        if (System.getenv("PORT") != null) {
+            Spark.port(Integer.valueOf(System.getenv("PORT")));
+        }
+
         Database tietokanta = new Database("jdbc:sqlite:raakaaineet.db");
 
         RaakaAineDao raakaAineDao = new RaakaAineDao(tietokanta);
@@ -40,7 +44,7 @@ public class Main {
 
             return new ModelAndView(map, "sushit");
         }, new ThymeleafTemplateEngine());
-        
+
         Spark.get("/aines/:id", (req, res) -> {
             Integer id = Integer.parseInt(req.params(":id"));
             HashMap map = new HashMap<>();
